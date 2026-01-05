@@ -1,0 +1,15 @@
+- name: Install
+    run: |
+      sudo apt update
+      sudo apt install -y python3-pip openjdk-17-jdk
+      pip install buildozer cython kivy
+
+  - name: Build
+    run: |
+      buildozer android debug
+
+  - name: Save APK
+    uses: actions/upload-artifact@v3
+    with:
+      name: apk
+      path: bin/*.apk
